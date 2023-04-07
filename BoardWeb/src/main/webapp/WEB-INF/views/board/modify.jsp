@@ -8,11 +8,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Board Read Page
+                            Board Modify Page
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                        	
+                        	<form action="/board/modify" method="post">
                             	<div class="form-group">
                             		<label>Bno</label>
                             		<input class="form-control" type="text" name="bno" value="${board.bno }" readonly>
@@ -29,17 +29,16 @@
                             		<label>Text Area</label>
                             		<textarea class="form-control" name="content">${board.content}</textarea>
                             	</div>
-                            	<button data-oper="modify" class="btn btn-default">Modify</button> <!-- get방식요청 -->
-                             	<button data-oper="list" class="btn btn-default">List</button>                           	                          	
-                             	<form id="operForm" action="/board/modify" method="get">
-                             		<input type="hidden" id="bno" name="bno" value="${board.bno }">
-                             		<input type="hidden" name="pageNum" value="${cri.pageNum }">
-                             		<input type="hidden" name="amount" value="${cri.amount }">
-                             		<input type="hidden" name="type" value="${cri.type }">
-                            		<input type="hidden" name="keyword" value="${cri.keyword }">
-                             	</form>
+                            	<button type="submit" data-oper="modify" class="btn btn-default">Modify</button> <!-- get방식요청 -->
+                            	<button type="submit" data-oper="remove" class="btn btn-default">Remove</button>
+                            	<button type="submit" data-oper="list" class="btn btn-default">List</button>
+                            	<input type="hidden" name="pageNum" value="${cri.pageNum }">
+                            	<input type="hidden" name="amount" value="${cri.amount }">
+                            	<input type="hidden" name="type" value="${cri.type }">
+                            	<input type="hidden" name="keyword" value="${cri.keyword }">
+                            	                       	                          	
                             <!-- /.table-responsive -->
-                            
+                            </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -50,15 +49,34 @@
             <!-- /.row -->
 <script>
 	$(document).ready(function () {
-		var operForm = $('#operForm');
-		$('button[data-oper="modify"]').on('click', function () {
-			operForm.attr('action', '/board/modify').submit();
+		var formObj = $('form');
+		
+		$('button').on('click', function (e) {
+			e.preventDefault(); // 기본기능 차단.
+			var operation = $(this).data('oper'); //
+			console.log(operation);
+			
+			if(operation == 'remove') {
+				formObj.attr('action', '/board/remove');
+			} else if (operation == 'list') {
+				//self.location = '/board/list';
+				//return;
+				// pageNum, amount => clone() -> empty() -> append(clone item)
+				var pageNumTag = formObj.find('input[name="pageNum"]').clone();
+				var amountTag = formObj.find('input[name="amount"]').clone();
+				var typeTag = formObj.find('input[name="type"]').clone();
+				var keywordTag = formObj.find('input[name="keyword"]').clone();
+				formObj.attr('action', '/board/list').attr('method', 'get')
+				formObj.empty(); // 파라미터 제거
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
+				
+			}
+			formObj.submit(); // submit 호출.	
 		})
-		$('button[data-oper="list"]').on('click', function () {
-			operForm.find('#bno').remove(); // 목록이동일 경우 parameter 필요없음.
-			operForm.attr('action', '/board/list');
-			operForm.submit();
-		})
+		
 	});
 </script>
 
