@@ -14,7 +14,7 @@ public class BookServiceImpl implements BookService{
 	
 	@Override
 	public int register(BookVO vo) {
-		return bookMapper.insert(vo);
+		return bookMapper.insertBook(vo);
 	}
 
 }

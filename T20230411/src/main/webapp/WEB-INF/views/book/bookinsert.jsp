@@ -38,10 +38,10 @@
 			<h1>도서대여관리</h1>
 			<nav>
 				<ul>
-					<li><a href="">도서등록</a></li>
+					<li><a href="/register">도서등록</a></li>
 					<li><a href="">도서목록조회/수정</li>
 					<li><a href="">대여현황조회</a></li>
-					<li><a href="">홈으로</a></li>
+					<li><a href="/index">홈으로</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -49,33 +49,37 @@
 		
 		<section>
 			<div class="panel-heading">
-                           	도서 등록
+                           	<h2>도서 등록</h2>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <form role="form" action="/board/register" method="post">
+                            <form role="form" action="/register" method="post">
                             	<div class="form-group">
                             		<label>도서번호</label>
-                            		<input class="form-control" type="text" name="title">
+                            		<input class="form-control" type="number" readonly>
                             	</div>
                             	<div class="form-group">
                             		<label>도서명</label>
-                            		<input class="form-control" type="text" name="writer">
+                            		<input class="form-control" type="text" name="bookName">
                             	</div>
                             	<div class="form-group">
                             		<label>도서표지</label>
-                            		<input class="form-control" type="text" name="writer">
+                            		<input class="form-control" type="text" name="bookCoverimg">
                             	</div>
                             	<div class="form-group">
                             		<label>출판일자</label>
-                            		<input class="form-control" type="text" name="writer">
+                            		<input class="form-control" type="text" name="bookDate">
                             	</div>
                             	<div class="form-group">
                             		<label>금액</label>
-                            		<input class="form-control" type="number" name="writer">
+                            		<input class="form-control" type="number" name="bookPrice">
                             	</div>
                             	<div class="form-group">
                             		<label>출판사</label>
-                            		<textarea class="form-control" name="content"></textarea>
+                            		<input class="form-control" type="text" name="bookPublisher">
+                            	</div>
+                            	<div class="form-group">
+                            		<label>도서소개</label>
+                            		<textarea class="form-control" name="bookInfo"></textarea>
                             	</div>
                             	<button type="submit" class="btn btn-default">등록</button>
                             	<button type="reset" class="btn btn-default">조회</button>

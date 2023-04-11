@@ -38,10 +38,10 @@
 			<h1>도서대여관리</h1>
 			<nav>
 				<ul>
-					<li><a href="">도서등록</a></li>
+					<li><a href="/register">도서등록</a></li>
 					<li><a href="">도서목록조회/수정</li>
 					<li><a href="">대여현황조회</a></li>
-					<li><a href="">홈으로</a></li>
+					<li><a href="/index">홈으로</a></li>
 				</ul>
 			</nav>
 		</header>
