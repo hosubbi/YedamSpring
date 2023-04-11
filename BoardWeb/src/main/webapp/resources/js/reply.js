@@ -34,8 +34,8 @@ var replyService = (function () {
         var page = param.page;
         $.getJSON('/replies/pages/' + bno + '/' + page + '.json', function (data) {
             if (callback) {
-                //console.log(data)
-                callback(data);
+                console.log(data)
+                callback(data.replyCnt, data.list);
             }
             console.log(data)
         }).fail(function (err) {
