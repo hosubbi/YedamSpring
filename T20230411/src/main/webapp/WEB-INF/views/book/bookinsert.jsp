@@ -24,6 +24,14 @@
 		font-weight: bold;
 		
 	}
+	.container form div label{
+	
+		margin-right: 30px;
+	}
+	.container h2{
+		text-align: center;
+	}
+	
 	.center {
 		text-align: center;
 	}

@@ -13,4 +13,8 @@
 		values (#{bookNo}, #{bookName}, #{bookCoverimg}, #{bookDate}, #{bookPrice}, #{bookPublisher}, #{bookInfo})
     </insert>
   	
+  	<select id="bookList" resultType="com.yedam.domain.BookVO">
+  		select * from book_tbl_06 where book_no > 0
+  	</select>
+  	
 </mapper>
